@@ -1,0 +1,5 @@
+.headerElement {
+    /* TODO: CSS overflows? */
+    list-style-type: none;
+    text-align: center;
+}
