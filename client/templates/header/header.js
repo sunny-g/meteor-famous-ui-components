@@ -1,46 +1,46 @@
-Template.header.helpers({
-  childSize: "proportional:.7; renderSize",
-  childMountPoint: "[0.5, 0.5]",
-  childAlign: "[0.5, 0.5]",
+Template.body.helpers({
+  size: "P:.5; P:.5",
+  mountPoint: "[0.5, 0.5]",
+  align: "[0.5, 0.5]",
+  origin: "[0.5, 0.5]",
 
-  headerElements: function() {
+  headers: function() {
     return [
-      {
-        index: 0,
-        title: 'Frontpg'
-      },
-      {
-        index: 1,
-        title: 'Rewards'
-      },
-      {
-        index: 2,
-        title: 'Account'
-      }
+      {title: 'World View'},
+      // {title: 'Local View'},
+      // {title: 'Account'}
     ];
   }
 });
 
-Template.headerElement.onCreated(function() {
-  var fview = FView.current();
-  fview.node.addUIEvent('click');
+Header = function() {
+  famous.core.Node.call(this);
+};
+Header.prototype = Object.create(famous.core.Node.prototype);
+Header.prototype.constructor = Header;
 
-  fview.node.onReceive = function(type, ev) {
-    console.log('headerElement', arguments);
-  }
-});
+HeaderTitle = function() {
+  famous.core.Node.call(this);
+   this.position = new famous.components.Position(this);
+  // this
+  //   .setMountPoint(0.5, 0.5)
+  //   .setAlign(0.5, 0.5)
+  //   .setMode(famous.core.Node.PROPORTIONAL_SIZE, famous.core.Node.PROPORTIONAL_SIZE);
+  //   .setProportional(0.5, 0.5);
 
-Template.headerElement.helpers({
-  templateGestures: {
-    'swipe li': function() {
-      console.log('swiped', arguments);
-    }
-  }
-});
+  this.gestures = new famous.components.GestureHandler(this);
+  this.gestures.on('drag', function(ev) {
+    console.log('dragged', arguments);
+    this.position.set(ev.center.x, ev.center.y);
+  }.bind(this));
 
-Template.headerElement.events({
-  'click li' : function() {
-    //console.log('clicked the headerElement');
-    alert('clicked the headerElement!');
-  }
-});
+  //this.addUIEvent('touchstart');
+  //this.onReceive = function(type, ev) {
+  //  console.log('clicked an element', arguments);
+  //}
+};
+HeaderTitle.prototype = Object.create(famous.core.Node.prototype);
+HeaderTitle.prototype.constructor = HeaderTitle;
+
+FView.wrap('Header', Header);
+FView.wrap('HeaderTitle', HeaderTitle);

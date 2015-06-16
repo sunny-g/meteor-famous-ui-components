@@ -5,8 +5,13 @@
 </head>
 <body>
 {{#Scene}}
-  {{#Node size=headerSize}}
-    {{> header}}
-  {{/Node}}
+  {{#Header size="P:1; P:.1"}}
+    {{#famousEach headers}}
+      {{#HeaderTitle size=size mountPoint=mountPoint align=align origin=origin}}
+        {{> headerTitleHTML}}
+      {{/HeaderTitle}}
+    {{/famousEach}}
+  {{/Header}}
 {{/Scene}}
 </body>
+

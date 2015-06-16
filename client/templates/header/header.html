@@ -1,19 +1,5 @@
-<template name="header">
-  {{#famousEach headerElements}}
-    {{#Node
-      size=childSize
-      mountPoint=childMountPoint
-      align=childAlign
-    }}
-      {{> headerElement}}
-    {{/Node}}
-  {{/famousEach}}
-</template>
-
-<template name="headerElement">
+<template name="headerTitleHTML">
   {{#DOMElement}}
-    {{#HammerTouchArea gestureMap=templateGestures}}
-      <li class="headerElement">{{title}}</li>
-    {{/HammerTouchArea}}
+    <span class="headerTitle">{{title}}</span>
   {{/DOMElement}}
 </template>
