@@ -5,13 +5,21 @@
 </head>
 <body>
 {{#Scene}}
+
   {{#Header size="P:1; P:.1"}}
     {{#famousEach headers}}
-      {{#HeaderTitle size=size mountPoint=mountPoint align=align origin=origin}}
+      {{#HeaderTitle size="P:.5; P:.5" align="[0.5, 0.5]" mountPoint="[0.5, 0.5]"}}
         {{> headerTitleHTML}}
       {{/HeaderTitle}}
     {{/famousEach}}
   {{/Header}}
+
+  <!--{{#Content size="P:1; P:1"}}-->
+    <!--{{#ContentBox size="A:200; A:200" align="[0, 0]" mountPoint="[0, 0]"}}-->
+      <!--{{> ContentBoxHTML}}-->
+    <!--{{/ContentBox}}-->
+  <!--{{/Content}}-->
+
 {{/Scene}}
 </body>
 

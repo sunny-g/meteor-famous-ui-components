@@ -1,4 +1,13 @@
-.headerTitle {
-    /* TODO: CSS overflows? */
+.headerTitleContainer {
+    background-color: lightblue;
+    display: table;
     text-align: center;
+
+    height: 100%;
+    width: 100%;
+}
+
+.headerTitle {
+    display: table-cell;
+    vertical-align: middle;
 }

@@ -1,46 +1,52 @@
-Template.body.helpers({
-  size: "P:.5; P:.5",
-  mountPoint: "[0.5, 0.5]",
-  align: "[0.5, 0.5]",
-  origin: "[0.5, 0.5]",
-
-  headers: function() {
-    return [
-      {title: 'World View'},
-      // {title: 'Local View'},
-      // {title: 'Account'}
-    ];
-  }
-});
-
 Header = function() {
   famous.core.Node.call(this);
+
+  this.onReceive = function(type, ev) {
+    if (type === 'draggingHeaderTitle') {
+      console.log('heard headerTitle drag');
+    }
+  }
 };
 Header.prototype = Object.create(famous.core.Node.prototype);
 Header.prototype.constructor = Header;
 
 HeaderTitle = function() {
   famous.core.Node.call(this);
-   this.position = new famous.components.Position(this);
-  // this
-  //   .setMountPoint(0.5, 0.5)
-  //   .setAlign(0.5, 0.5)
-  //   .setMode(famous.core.Node.PROPORTIONAL_SIZE, famous.core.Node.PROPORTIONAL_SIZE);
-  //   .setProportional(0.5, 0.5);
+  this.position = new famous.components.Position(this);
 
   this.gestures = new famous.components.GestureHandler(this);
-  this.gestures.on('drag', function(ev) {
-    console.log('dragged', arguments);
-    this.position.set(ev.center.x, ev.center.y);
-  }.bind(this));
 
-  //this.addUIEvent('touchstart');
-  //this.onReceive = function(type, ev) {
-  //  console.log('clicked an element', arguments);
-  //}
+
+  this.gestures.on('drag', headerSwipeHandler.bind(this));
+
 };
 HeaderTitle.prototype = Object.create(famous.core.Node.prototype);
 HeaderTitle.prototype.constructor = HeaderTitle;
+
+function headerSwipeHandler(ev) {
+  /*
+  on drag:
+    √ 1) set position to drag element
+      y stays the same
+      x offsets the click loc
+   */
+  /*
+  MEANWHILE ELSEWHERE
+    hearing a viewchange event triggers something...?
+   */
+  this.position.set(this.position._x._state + ev.centerDelta.x);
+  //this.emit('draggingHeaderTitle');
+
+  if (ev.status === 'end') {
+    /*
+    2) if x pos doesnt move by some threshold
+      have element spring back to original position
+    3) if x pos passes some threshold
+      element springs to new position
+      emit a viewchange event
+     */
+  }
+}
 
 FView.wrap('Header', Header);
 FView.wrap('HeaderTitle', HeaderTitle);
