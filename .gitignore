@@ -1,0 +1,13 @@
+# webstorm
+.idea/
+
+# shouldn't need html or css files
+*.html
+*.css
+
+# shouldn't need any external libs
+client/lib
+
+# shouldn't need main or helper files but for testing
+main.*
+helpers.js
