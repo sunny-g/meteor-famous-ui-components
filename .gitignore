@@ -6,7 +6,7 @@
 *.css
 
 # shouldn't need any external libs
-client/lib
+lib/client/lib
 
 # shouldn't need main or helper files but for testing
 main.*
