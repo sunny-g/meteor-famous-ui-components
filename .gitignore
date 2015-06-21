@@ -11,3 +11,6 @@ lib/client/lib
 # shouldn't need main or helper files but for testing
 main.*
 helpers.js
+
+# shouldn't need main meteor folder either
+.meteor

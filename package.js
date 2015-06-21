@@ -1,5 +1,5 @@
 Package.describe({
-  name: "sunny-g:meteor-famous-ui-components",
+  name: "sunnyg:meteor-famous-ui-components",
   summary: "A set of fancy UI components - implemented in Famo.us, packaged for Meteor",
   version: "0.0.1",
   git: "https://github.com/sunny-g/meteor-famous-ui-components"
@@ -9,7 +9,7 @@ Package.onUse(function(api) {
   api.versionsFrom(['METEOR@1.0']);
 
   api.use([
-    'gadicohen:famous',
+    'gadicohen:famous@0.5.2',
     'gadicohen:famous-views@1.2.0'
   ]);
 
